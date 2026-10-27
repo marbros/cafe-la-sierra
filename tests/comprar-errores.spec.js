@@ -11,7 +11,7 @@ test('el formulario no deja confirmar con datos inválidos y señala cada campo'
   await expect(page.getByText('Escribe tu nombre.')).toBeVisible();
   await expect(page.getByText(/teléfono válido/)).toBeVisible();
   await expect(page.getByText(/dirección completa/)).toBeVisible();
-  await expect(page.getByText(/Elige tu zona/)).toBeVisible();
+  await expect(page.getByText('Elige tu zona para ver la tarifa del domicilio.')).toBeVisible();
   await expect(page.getByTestId('confirmacion')).toHaveCount(0);
 
   // Teléfono con letras tampoco pasa.
