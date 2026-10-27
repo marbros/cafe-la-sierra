@@ -1,0 +1,9 @@
+schema: spec-driven
+
+context: |
+  Café La Sierra: landing + checkout de pedidos de café + tablero kanban del operador.
+  Stack: Next.js 16 (App Router) en Vercel, React 18, PostgreSQL en Neon vía Prisma 7
+  (@prisma/adapter-neon), Tailwind CSS 3.
+  Convenciones: el servidor es la fuente de verdad (catálogo/zonas en src/data/content.js);
+  fechas y horas solo vía src/lib/time.js (America/Bogota); POST /api/orders idempotente
+  por idempotencyKey; un change de OpenSpec por ítem de backlog. Ver openspec/project.md.

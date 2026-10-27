@@ -1,0 +1,20 @@
+# deps y build
+node_modules/
+.next/
+out/
+
+# entornos — nunca se commitean credenciales
+.env
+.env.*
+!.env.example
+
+# vercel
+.vercel/
+
+# playwright
+playwright-report/
+test-results/
+
+# sistema
+.DS_Store
+Thumbs.db

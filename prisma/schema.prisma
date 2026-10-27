@@ -1,0 +1,35 @@
+// Prisma 7: la URL del datasource vive en prisma.config.ts y el PrismaClient
+// exige un adapter en el constructor (@prisma/adapter-neon, ADR-0004).
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// Tabla única desnormalizada (ADR-0005): un pedido = una tarjeta del tablero.
+// `items` guarda el snapshot de productos (id, título, precio unitario, cantidad)
+// calculado por el servidor contra el catálogo: nunca lo que mande el cliente.
+model Order {
+  id             String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  items          Json
+  subtotal       Int
+  deliveryFee    Int      @map("delivery_fee")
+  total          Int
+  customerName   String   @map("customer_name")
+  customerPhone  String   @map("customer_phone")
+  address        String
+  zoneId         String   @map("zone_id")
+  zoneName       String   @map("zone_name")
+  date           DateTime @db.Date
+  slot           String // 'manana' | 'tarde' (validado en src/lib/orders.js)
+  status         String   @default("NUEVO") // NUEVO | PREPARANDO | EN_CAMINO | ENTREGADO | CANCELADO
+  notes          String?
+  createdAt      DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt      DateTime @default(now()) @updatedAt @map("updated_at") @db.Timestamptz(6)
+  idempotencyKey String   @unique @map("idempotency_key") @db.Uuid
+
+  @@index([date, zoneId])
+  @@map("orders")
+}
