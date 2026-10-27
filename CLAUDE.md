@@ -5,7 +5,7 @@
 **Qué es.** Landing + flujo de compra con domicilio + tablero de pedidos para "Café La
 Sierra", una marca de café colombiano de origen. El cliente compra desde la web sin cuenta
 (pago en efectivo contra entrega); el dueño gestiona las entregas en un kanban `/admin`
-protegido por clave única.
+protegido por clave única. En producción en https://cafe-la-sierra.vercel.app.
 
 **Qué problema resuelve.** Los pedidos llegaban por WhatsApp, chat por chat: pedidos
 olvidados, sin visibilidad de qué sale hoy. Ahora el pedido entra por la web con dirección,

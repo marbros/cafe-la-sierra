@@ -1,5 +1,7 @@
 # ☕ Café La Sierra — del pedido a tu puerta
 
+**En producción: https://cafe-la-sierra.vercel.app**
+
 Landing + checkout con domicilio + tablero de pedidos para una marca de café colombiano.
 Proyecto integrador del curso **Desarrollo AI-first con Claude**: todo el ciclo
 (PRD → diseño → arquitectura → backlog → specs → código → tests → seguridad → deploy) fue
