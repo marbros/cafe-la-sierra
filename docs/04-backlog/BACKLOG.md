@@ -13,6 +13,7 @@
 | 5 | **Checkout `/comprar`**: carrito de 2 cafés, formulario con zona (tarifa visible) y franja, confirmación | Flujo de compra completo contra la API; casos borde 1–3 y 5 del PRD | 1, 4 | 0009, 0010 | `2026-10-26-checkout-comprar` | ✅ |
 | 6 | **Acceso del operador**: login con clave única, cookie HMAC, proxy sobre `/admin` y `/api/admin/*` | `/admin/login` funcional; rutas privadas cerradas | 1 | 0006 | `2026-10-26-admin-login` | ✅ |
 | 7 | **Tablero kanban con semáforo**: 5 columnas, transiciones válidas, filtros día/zona, refresco 60 s | `/admin` operativo contra pedidos reales; PATCH condicional (409 concurrencia) | 2, 3, 6 | 0005, 0007 | `2026-10-26-tablero-kanban-semaforo` | ✅ |
+| 8 | **Rediseño visual v2 "cuero y crema"**: tema oscuro de brulería artesanal (referencia elegida por el dueño) en landing, checkout, login y tablero; tokens nuevos, glass cards, framer-motion, assets propios | Las 4 vistas con un solo lenguaje visual; DESIGN.md v2; E2E en verde sin cambios de lógica | 1, 5, 7 | — (sin cambio de arquitectura) | `2026-10-27-rediseno-cuero-crema` | ✅ |
 
 ## Fuera del backlog de producto (pipeline de calidad, sesiones 11–13)
 
@@ -24,3 +25,19 @@
 
 Si algo se cae, se recorta el tablero avanzado (filtros), **nunca** el flujo de compra.
 No hizo falta: los 7 ítems entraron.
+
+## Próxima iteración (pendiente — priorizado, no comprometido)
+
+| # | Ítem | Origen | Prioridad |
+|---|---|---|---|
+| 9 | Límites de longitud en campos de texto del pedido y horizonte máximo de fecha (hoy acepta cualquier fecha futura) | SECURITY-REPORT **SP-02** | Alta |
+| 10 | Logout del admin y procedimiento de revocación de sesión (rotar `ADMIN_SESSION_SECRET` documentado como mecanismo) | SECURITY-REPORT **SP-03** | Alta |
+| 11 | Tests E2E de seguridad del admin (transiciones inválidas por API, sesión expirada) | SECURITY-REPORT **SP-04** | Media |
+| 12 | Cabeceras de seguridad propias (CSP, `frame-ancestors`, `Referrer-Policy`) en `next.config.js` | SECURITY-REPORT **SP-06** | Media |
+| 13 | Rate limiting en `POST /api/orders` y login admin (hoy riesgo aceptado) | SECURITY-REPORT **SP-01** / TECH-DESIGN §9 | Media |
+| 14 | Notificación al cliente por WhatsApp (`wa.me`) al confirmar — hoy la confirmación en pantalla es el único comprobante | Riesgo aceptado TECH-DESIGN §9 | Baja |
+| 15 | Panel para editar zonas/tarifas sin deploy, si empiezan a cambiar seguido | Supuesto del PRD / ADR-0010 | Baja |
+
+Regla: cada ítem que se tome pasa por el mismo ciclo (ADR si cambia arquitectura → change de
+OpenSpec → código + tests). Los ítems 8–12 **actualizan el estado de su hallazgo** en el
+SECURITY-REPORT al cerrarse.

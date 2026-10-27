@@ -36,8 +36,8 @@ export default function LoginForm() {
   }
 
   return (
-    <form onSubmit={submit} className="w-full max-w-sm rounded-card bg-surface p-8 shadow-card">
-      <h1 className="font-display text-2xl font-semibold text-on-surface">{site.name}</h1>
+    <form onSubmit={submit} className="glass w-full max-w-sm rounded-card p-8 shadow-card">
+      <h1 className="font-display text-2xl font-black uppercase tracking-[0.1em] text-primary">{site.name}</h1>
       <p className="mt-1 text-sm text-on-surface-muted">Tablero de pedidos del operador</p>
       <label className="mt-6 block">
         <span className="text-sm font-semibold text-on-surface">Clave de acceso</span>
@@ -47,7 +47,7 @@ export default function LoginForm() {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           autoFocus
-          className="mt-1.5 w-full rounded-card border border-outline bg-surface px-4 py-3 text-sm"
+          className="mt-1.5 w-full rounded-xl border border-primary/20 bg-background-deep/50 px-4 py-3 text-sm text-on-surface"
         />
       </label>
       {error ? (

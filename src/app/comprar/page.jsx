@@ -8,7 +8,7 @@ export default function ComprarPage() {
   return (
     <>
       <Header />
-      <main className="py-10 sm:py-14">
+      <main className="pb-14 pt-28 sm:pt-32">
         <ComprarCafe />
       </main>
       <Footer />

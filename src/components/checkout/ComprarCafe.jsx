@@ -25,7 +25,7 @@ function Field({ label, error, children }) {
 }
 
 const inputClass =
-  'w-full rounded-card border border-outline bg-surface px-4 py-3 text-sm text-on-surface placeholder:text-on-surface-muted/60';
+  'w-full rounded-xl border border-primary/20 bg-background-deep/50 px-4 py-3 text-sm text-on-surface placeholder:text-on-surface-muted/60';
 
 export default function ComprarCafe() {
   const [qtys, setQtys] = useState(EMPTY_QTYS);
@@ -125,7 +125,7 @@ export default function ComprarCafe() {
     const slotLabel = `${formatDateLabel(confirmed.date)} — ${delivery.slotLabels[confirmed.slot]}`;
     return (
       <Container className="max-w-xl">
-        <div data-testid="confirmacion" className="rounded-card bg-surface p-8 text-center shadow-card">
+        <div data-testid="confirmacion" className="glass rounded-card p-8 text-center shadow-card">
           <span className="mx-auto flex h-14 w-14 items-center justify-center rounded-pill bg-success-container text-success">
             <Icon name="check" className="h-7 w-7" />
           </span>
@@ -136,7 +136,7 @@ export default function ComprarCafe() {
             Pedido <span className="font-mono font-semibold">{confirmed.id.slice(0, 8)}</span>. Te
             llamaremos al {confirmed.customerPhone} si necesitamos confirmar algo.
           </p>
-          <dl className="mt-6 space-y-2 rounded-card bg-background p-5 text-left text-sm">
+          <dl className="mt-6 space-y-2 rounded-card bg-background-deep/50 p-5 text-left text-sm">
             {confirmed.items.map((it) => (
               <div key={it.productId} className="flex justify-between">
                 <dt>
@@ -184,7 +184,7 @@ export default function ComprarCafe() {
             <div
               key={p.id}
               data-testid={`producto-${p.id}`}
-              className="flex items-center justify-between gap-4 rounded-card border border-outline/60 bg-surface p-5 shadow-card"
+              className="glass flex items-center justify-between gap-4 rounded-card p-5 shadow-card"
             >
               <div>
                 <h3 className="font-display text-lg font-semibold text-on-surface">{p.title}</h3>
@@ -197,7 +197,7 @@ export default function ComprarCafe() {
                   type="button"
                   aria-label={`Quitar ${p.title}`}
                   onClick={() => setQty(p.id, -1)}
-                  className="h-9 w-9 rounded-pill border border-outline text-lg font-semibold text-primary hover:bg-primary-container"
+                  className="h-9 w-9 rounded-pill border border-primary/30 text-lg font-semibold text-primary hover:bg-primary/10"
                 >
                   −
                 </button>
@@ -208,7 +208,7 @@ export default function ComprarCafe() {
                   type="button"
                   aria-label={`Agregar ${p.title}`}
                   onClick={() => setQty(p.id, 1)}
-                  className="h-9 w-9 rounded-pill border border-outline text-lg font-semibold text-primary hover:bg-primary-container"
+                  className="h-9 w-9 rounded-pill border border-primary/30 text-lg font-semibold text-primary hover:bg-primary/10"
                 >
                   +
                 </button>
@@ -291,7 +291,7 @@ export default function ComprarCafe() {
           </Field>
         </fieldset>
 
-        <div className="rounded-card bg-surface p-5 shadow-card">
+        <div className="glass rounded-card p-5 shadow-card">
           <dl className="space-y-1.5 text-sm">
             <div className="flex justify-between">
               <dt>Subtotal</dt>

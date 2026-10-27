@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "receiptId": "4018b637-4f4c-42d8-b216-067012244053",
+  "status": "current",
+  "command": "deliver",
+  "type": "architecture",
+  "input": "C:\\Users\\marbros\\OneDrive\\Escritorio\\sesion04\\cafe-la-sierra\\.archify\\architecture-cafe-la-sierra-20261026-211902\\candidate.json",
+  "output": "C:\\Users\\marbros\\OneDrive\\Escritorio\\sesion04\\cafe-la-sierra\\docs\\06-diagramas\\arquitectura-cafe-la-sierra.html",
+  "specification": {
+    "sha256": "265b3ecf446ed239a8890ac1d0d689e6c4757d3575adc5018051ba4f0ffa78de",
+    "bytes": 10899
+  },
+  "artifact": {
+    "sha256": "3cf23bf2b0f68989984761d0bea9774622fe3454f6bcb7095d50631acf447db3",
+    "bytes": 879470
+  }
+}

@@ -20,7 +20,7 @@ function OrderCard({ order, onMove, busy }) {
   return (
     <article
       data-testid={`pedido-${order.id}`}
-      className="rounded-card border border-outline/60 bg-surface p-4 shadow-card"
+      className="glass rounded-card p-4 shadow-card"
     >
       <header className="flex items-center justify-between gap-2">
         <h3 className="truncate text-sm font-semibold text-on-surface">{order.customerName}</h3>
@@ -46,7 +46,7 @@ function OrderCard({ order, onMove, busy }) {
         ))}
       </ul>
       {order.notes ? <p className="mt-1.5 text-xs italic text-on-surface-muted">“{order.notes}”</p> : null}
-      <p className="mt-2 text-sm font-semibold text-primary-strong">{formatCop(order.total)}</p>
+      <p className="mt-2 font-display text-sm font-extrabold text-primary-strong">{formatCop(order.total)}</p>
       {TRANSITIONS[order.status].length > 0 ? (
         <div className="mt-3 flex flex-wrap gap-2">
           {TRANSITIONS[order.status].map((next) => (
@@ -126,7 +126,9 @@ export default function Tablero() {
     <main className="min-h-screen bg-background px-4 py-6 sm:px-6">
       <header className="flex flex-wrap items-end justify-between gap-4">
         <div>
-          <h1 className="font-display text-2xl font-semibold text-on-surface">{site.name} — Pedidos</h1>
+          <h1 className="font-display text-2xl font-extrabold uppercase tracking-wide text-primary">
+            {site.name} — Pedidos
+          </h1>
           <p className="text-sm text-on-surface-muted">
             Semáforo: <span className="font-medium text-success">verde</span> con tiempo ·{' '}
             <span className="font-medium text-warning">amarillo</span> entrega hoy ·{' '}
@@ -140,7 +142,7 @@ export default function Tablero() {
               type="date"
               value={filters.date}
               onChange={(e) => setFilters((f) => ({ ...f, date: e.target.value }))}
-              className="ml-2 rounded-card border border-outline bg-surface px-3 py-2 text-sm font-normal"
+              className="ml-2 rounded-xl border border-primary/20 bg-background-deep/50 px-3 py-2 text-sm font-normal text-on-surface [color-scheme:dark]"
             />
           </label>
           <label className="text-xs font-semibold text-on-surface-muted">
@@ -148,7 +150,7 @@ export default function Tablero() {
             <select
               value={filters.zone}
               onChange={(e) => setFilters((f) => ({ ...f, zone: e.target.value }))}
-              className="ml-2 rounded-card border border-outline bg-surface px-3 py-2 text-sm font-normal"
+              className="ml-2 rounded-xl border border-primary/20 bg-background-deep/50 px-3 py-2 text-sm font-normal text-on-surface"
             >
               <option value="">Todas</option>
               {delivery.zones.map((z) => (
@@ -162,7 +164,7 @@ export default function Tablero() {
             <button
               type="button"
               onClick={() => setFilters({ date: '', zone: '' })}
-              className="rounded-pill px-3 py-2 text-xs font-semibold text-primary hover:bg-primary-container"
+              className="rounded-pill px-3 py-2 text-xs font-semibold text-primary hover:bg-primary/10"
             >
               Limpiar filtros
             </button>
@@ -183,10 +185,10 @@ export default function Tablero() {
           {STATUSES.map((status) => {
             const column = orders.filter((o) => o.status === status);
             return (
-              <section key={status} data-testid={`columna-${status}`} className="rounded-card bg-surface-dim/60 p-3">
+              <section key={status} data-testid={`columna-${status}`} className="rounded-card bg-background-deep/60 p-3">
                 <h2 className="flex items-center justify-between px-1 text-sm font-semibold text-on-surface">
                   {board.statusLabels[status]}
-                  <span className="rounded-pill bg-surface px-2 py-0.5 text-xs text-on-surface-muted">
+                  <span className="rounded-pill bg-primary/10 px-2 py-0.5 text-xs text-on-surface-muted">
                     {column.length}
                   </span>
                 </h2>

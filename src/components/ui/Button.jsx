@@ -1,9 +1,9 @@
 const VARIANTS = {
   primary:
-    'bg-primary text-on-primary hover:bg-primary-strong disabled:bg-outline disabled:text-surface',
+    'bg-primary text-on-primary shadow-glow hover:bg-primary-strong disabled:bg-outline disabled:text-on-surface-muted disabled:shadow-none',
   outline:
-    'border border-primary text-primary hover:bg-primary-container disabled:border-outline disabled:text-outline',
-  ghost: 'text-primary hover:bg-primary-container',
+    'border border-primary/40 text-primary hover:bg-primary/10 disabled:border-outline disabled:text-outline',
+  ghost: 'text-primary hover:bg-primary/10',
 };
 
 export default function Button({ variant = 'primary', className = '', ...props }) {

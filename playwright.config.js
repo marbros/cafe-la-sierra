@@ -23,8 +23,10 @@ if (process.env.CI && process.env.DATABASE_URL) {
 
 export default defineConfig({
   testDir: './tests',
-  // El dev server compila las rutas en frío en la primera visita: 30s se quedan cortos.
+  // El dev server compila las rutas en frío en la primera visita: 30s se quedan cortos,
+  // y una aserción que espera la respuesta de una API route recién compilada supera los 5s.
   timeout: 90_000,
+  expect: { timeout: 15_000 },
   fullyParallel: true,
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 2 : 0,
