@@ -26,25 +26,60 @@ export const features = [
   },
 ];
 
+// Catálogo completo. `kind` separa el café en grano (340g) de las bebidas de la
+// casa (vaso 12 oz, ampliación del 2026-10-27 pedida por el dueño). El id y el
+// precio son autoridad del servidor (ADR-0009); `image`/`rating` son solo UI.
 export const catalog = {
   currency: 'COP',
   maxQtyPerProduct: 10,
   products: [
     {
       id: 'cafe-medio',
+      kind: 'grano',
       title: 'Café Medio',
       roast: 'Tueste medio',
       description: 'Equilibrado y dulce, con notas de panela, caramelo y frutos rojos.',
       price: 25000,
-      weight: '340g',
+      presentation: '340g',
     },
     {
       id: 'cafe-oscuro',
+      kind: 'grano',
       title: 'Café Oscuro',
       roast: 'Tueste oscuro',
       description: 'Intenso y achocolatado, cuerpo alto y final prolongado.',
       price: 27000,
-      weight: '340g',
+      presentation: '340g',
+    },
+    {
+      id: 'cappuccino',
+      kind: 'bebida',
+      title: 'Cappuccino',
+      rating: 4.9,
+      description: 'Un clásico atemporal: 20% espresso, 40% leche vaporizada y 40% espuma aireada.',
+      price: 12000,
+      presentation: 'Vaso 12 oz',
+      image: '/cup-1.png',
+    },
+    {
+      id: 'latte',
+      kind: 'bebida',
+      title: 'Latte',
+      rating: 5.0,
+      description: 'Suave y cremoso: 30% espresso y 70% leche fresca caliente.',
+      price: 13000,
+      presentation: 'Vaso 12 oz',
+      image: '/cup-2.png',
+    },
+    {
+      id: 'mocha',
+      kind: 'bebida',
+      title: 'Mocha',
+      rating: 4.7,
+      description: 'Para amantes del chocolate: 20% espresso, 50% leche y 30% chocolate premium.',
+      price: 14000,
+      presentation: 'Vaso 12 oz',
+      image: '/cup-3.png',
     },
   ],
 };

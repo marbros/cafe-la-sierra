@@ -78,3 +78,12 @@ Automatizar la toma y gestión de pedidos con entrega: el cliente compra solo de
 - **Alcance vs tiempo del curso:** si checkout + tablero no caben en las semanas disponibles, el recorte es el tablero avanzado (filtros), nunca el flujo de compra.
 
 <!-- REVISAR: los supuestos y riesgos fueron propuestos por el agente y aceptados sin ajustes — validar especialmente la mitigación del doble canal. -->
+
+## Ampliación v1.1 (2026-10-27)
+
+Tras entregar el MVP, el dueño amplió el alcance con dos piezas:
+
+- **Catálogo ampliado:** además de los 2 cafés en grano (Medio $25.000 y Oscuro $27.000 / 340g), la vitrina ofrece 3 bebidas de la casa en vaso de 12 oz — Cappuccino $12.000, Latte $13.000 y Mocha $14.000 — con rating e imagen. El catálogo sigue viviendo en `src/data/content.js` y el servidor sigue siendo la autoridad de precios: la API y el modelo de datos no cambiaron.
+- **Carrito persistente en el navegador:** las tarjetas de la landing suman al carrito con un botón "+", un ícono de carrito con contador en el navbar (desktop y móvil) lleva a `/comprar`, y el checkout precarga las cantidades del carrito, las sincroniza al cambiarlas y lo vacía al confirmar el pedido. Esto resuelve lo que el alcance original dejaba abierto como "carrito simple o compra directa": queda como **carrito en localStorage, sin cuentas de usuario**.
+
+Todo lo demás se mantiene igual: pago en efectivo contra entrega, zonas con tarifa fija, franjas de lunes a sábado con corte, y el tablero del operador. El "No alcance" no cambia.

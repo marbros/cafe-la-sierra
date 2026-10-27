@@ -11,6 +11,7 @@ import Button from '../ui/Button.jsx';
 import Icon from '../ui/Icon.jsx';
 import { catalog, delivery, formatCop } from '../../data/content.js';
 import { formatDateLabel } from '../../lib/time.js';
+import { clearCart, readCart, writeCart } from '../../lib/cart.js';
 
 const EMPTY_QTYS = Object.fromEntries(catalog.products.map((p) => [p.id, 0]));
 
@@ -45,6 +46,8 @@ export default function ComprarCafe() {
 
   useEffect(() => {
     loadSlots();
+    // El carrito armado en la landing precarga las cantidades.
+    setQtys({ ...EMPTY_QTYS, ...readCart() });
   }, []);
 
   const items = useMemo(
@@ -71,10 +74,14 @@ export default function ComprarCafe() {
   const isValid = Object.values(errors).every((e) => e === null);
 
   const setQty = (id, delta) =>
-    setQtys((q) => ({
-      ...q,
-      [id]: Math.min(catalog.maxQtyPerProduct, Math.max(0, q[id] + delta)),
-    }));
+    setQtys((q) => {
+      const next = {
+        ...q,
+        [id]: Math.min(catalog.maxQtyPerProduct, Math.max(0, q[id] + delta)),
+      };
+      writeCart(next); // el ícono del navbar y la landing ven el mismo carrito
+      return next;
+    });
   const setField = (k) => (e) => setForm((f) => ({ ...f, [k]: e.target.value }));
 
   async function submit(e) {
@@ -103,6 +110,7 @@ export default function ComprarCafe() {
       });
       const data = await res.json();
       if (res.ok) {
+        clearCart();
         setConfirmed(data);
         return;
       }
@@ -189,7 +197,8 @@ export default function ComprarCafe() {
               <div>
                 <h3 className="font-display text-lg font-semibold text-on-surface">{p.title}</h3>
                 <p className="text-xs text-on-surface-muted">
-                  {p.roast} · {p.weight} · {formatCop(p.price)}
+                  {p.kind === 'grano' ? `${p.roast} · ` : ''}
+                  {p.presentation} · {formatCop(p.price)}
                 </p>
               </div>
               <div className="flex items-center gap-3">
