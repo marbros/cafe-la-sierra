@@ -19,6 +19,8 @@ test-results/
 .DS_Store
 Thumbs.db
 .neon
+.archify/
+.hyperframes/
 
 .vercel
 .env*

@@ -2,14 +2,19 @@
 
 **En producción: https://cafe-la-sierra.vercel.app**
 
+![Recorrido por la app](docs/assets/demo-scroll.gif)
+
+*Demo generada con [HyperFrames](https://hyperframes.heygen.com/) sobre la app en producción —
+[ver en MP4](docs/assets/demo-scroll.mp4).*
+
 Landing + checkout con domicilio + tablero de pedidos para una marca de café colombiano.
 Proyecto integrador del curso **Desarrollo AI-first con Claude**: todo el ciclo
 (PRD → diseño → arquitectura → backlog → specs → código → tests → seguridad → deploy) fue
 construido con Claude Code y quedó documentado en este repo.
 
-- **El cliente** compra 1–2 bolsas desde la web sin registrarse: elige café y cantidad, zona
-  (tarifa de domicilio fija y visible) y franja de entrega (lunes a sábado, mañana o tarde).
-  Paga en efectivo al recibir.
+- **El cliente** compra sin registrarse: bebidas de la casa (cappuccino, latte, mocha) o café
+  en grano, con carrito persistente, zona (tarifa de domicilio fija y visible) y franja de
+  entrega (lunes a sábado, mañana o tarde). Paga en efectivo al recibir.
 - **El dueño** gestiona las entregas en `/admin`: kanban de 5 estados con semáforo contra la
   franja comprometida (verde con tiempo / amarillo hoy / rojo vencida) y filtros por día y zona.
 
@@ -31,6 +36,16 @@ Tests: `npm run test:unit` (lógica de franjas/semáforo/validación) y `npm run
 (Playwright; requiere `.env.e2e`, ver `docs/07-testing/README.md`).
 
 ## Documentación (pipeline AI-first)
+
+Así se construyó el proyecto — cada documento consume al anterior, la revisión adversarial
+corrige el diseño antes de codificar, y los hallazgos de seguridad alimentan la próxima
+iteración del backlog:
+
+[![Pipeline documental AI-first](docs/assets/pipeline-documental.png)](docs/06-diagramas/pipeline-documental.html)
+
+*Diagrama generado con [Archify](https://github.com/tt-a1i/archify) sobre el código real del
+repo (provenance verificada por commit) —
+[versión interactiva](docs/06-diagramas/pipeline-documental.html).*
 
 El índice completo, con la trazabilidad PRD → ADR → backlog → spec → test, está en
 [`docs/README.md`](docs/README.md). Para agentes: [`CLAUDE.md`](CLAUDE.md).

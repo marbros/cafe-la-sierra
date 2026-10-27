@@ -4,21 +4,43 @@ Esta carpeta está ordenada en el mismo orden en que se construyó el proyecto. 
 **consume el documento anterior**. Ninguno es un documento suelto: si el PRD cambia, el
 diseño técnico, el backlog y las specs tienen que responder a ese cambio.
 
+> Versión interactiva de este flujo (generada con Archify sobre el repo):
+> [`06-diagramas/pipeline-documental.html`](06-diagramas/pipeline-documental.html).
+
 ```mermaid
-flowchart LR
-    PRD[01 PRD] --> DES[02 DESIGN.md]
-    PRD --> TD[03 Tech Design + ADRs]
-    DES -.opcional.-> TD
-    TD --> REV{{Revisión adversarial}}
-    REV --> TD
-    TD --> BL[04 Backlog]
-    BL --> SDD[05 Spec + Tasks<br/>OpenSpec]
-    SDD --> COD[Código + Review]
-    COD --> DIA[06 Diagramas]
-    COD --> TST[07 Tests E2E]
-    COD --> SEC[08 Security pass]
-    TST --> DEP[09 Deploy + CI/CD]
+flowchart TD
+    subgraph producto [Definición de producto]
+        PRD["01 · PRD.md<br/><i>qué y para quién</i>"]
+        DES["02 · DESIGN.md v2<br/><i>cuero y crema</i>"]
+    end
+    subgraph arquitectura [Decisiones]
+        TD["03 · TECH-DESIGN.md"]
+        ADR[("10 ADRs")]
+        REV{{"Revisión adversarial<br/>3 hallazgos → ADR 0008, §4, §5"}}
+    end
+    subgraph ejecucion [Ejecución spec-driven]
+        BL["04 · BACKLOG.md · 9 ítems"]
+        OS["05 · OpenSpec · 9 changes<br/>propose → apply → archive"]
+        COD["Código + review<br/>Next.js 16 · Prisma · Neon"]
+    end
+    subgraph calidad [Calidad sobre el código real]
+        DIA["06 · Diagramas<br/>Mermaid + Archify"]
+        TST["07 · 6 E2E Playwright"]
+        SEC["08 · Security pass<br/>8 hallazgos SP-01…08"]
+    end
+    DEP["09 · DEPLOY-PLAN + CI/CD<br/>quality → e2e → deploy → smoke"]
+    PROD(("cafe-la-sierra.vercel.app"))
+
+    PRD --> DES --> TD
+    PRD --> TD
+    TD <--> REV
+    TD --- ADR
+    TD --> BL --> OS --> COD
+    COD --> DIA & TST & SEC
+    SEC -. "pendientes alimentan<br/>la próxima iteración" .-> BL
+    TST --> DEP
     SEC --> DEP
+    DEP --> PROD
 ```
 
 ## Los pasos

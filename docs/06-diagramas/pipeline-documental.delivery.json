@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "receiptId": "9d83f474-bf35-4257-8ac7-b11e6f968416",
+  "status": "current",
+  "command": "deliver",
+  "type": "workflow",
+  "input": "C:\\Users\\marbros\\OneDrive\\Escritorio\\sesion04\\cafe-la-sierra\\.archify\\workflow-pipeline-documental-20261026-223603\\candidate.json",
+  "output": "C:\\Users\\marbros\\OneDrive\\Escritorio\\sesion04\\cafe-la-sierra\\docs\\06-diagramas\\pipeline-documental.html",
+  "specification": {
+    "sha256": "3c384c61d88f0f2e873a84582158c065f836d4e4e2d606db3fa346db5355b83f",
+    "bytes": 8665
+  },
+  "artifact": {
+    "sha256": "25db837b6c48224df43aa269a3e8c1f500cfdce42302c627e562e47c5f31f95a",
+    "bytes": 864350
+  }
+}
